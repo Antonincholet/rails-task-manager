@@ -1,0 +1,22 @@
+<%= link_to 'Create a task', new_task_path %>
+<h1>My tasks</h1>
+<ul>
+  <% @tasks.each do |thing| %>
+    <% if thing.completed %>
+      <li>[x]
+      <%= link_to thing.title, task_path(thing[:id]) %>
+      <%= link_to 'delete',
+                  task_path(thing[:id]),
+                  method: :delete,
+                  data: { confirm: "are you sure?" } %>
+      </li>
+    <% else %>
+      <li>[ ] <%= link_to thing.title, task_path(thing[:id]) %>
+      <%= link_to 'delete',
+                        task_path(thing[:id]),
+                        method: :delete,
+                        data: { confirm: "are you sure?"} %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
